@@ -844,7 +844,7 @@ It is easy to notice that the score ratios in~\autoref{fig:RatioMatrix} are not 
 
 \begin{figure}[!htbp]
 \centering
-    \includegraphics[scale=0.8]{figures/RatioMatrixPortrate.png}
+    \includegraphics[scale=0.7]{figures/RatioMatrixPortrate1.png}
     \caption{Ratios of Expected PPR and expected PR scores of companies. Rows are companies in PPR queries.}
     \label{fig:RatioMatrix}
 \end{figure}
@@ -857,15 +857,12 @@ In~\autoref{fig:incredi_sym_conduit}, we show the expected score of IncrediMail 
 \centering
 \begin{subfigure}[b]{0.4\textwidth}
 	\centering
-\includegraphics[width=\textwidth]{figures/incredi_sym_conduit.png}
+\includegraphics[width=\textwidth]{figures/incredi_sym_conduit1.png}
 \caption{IncrediMail symbiotic relation with Conduit}
 \label{fig:incredi_sym_conduit}
 \end{subfigure}
 \begin{subfigure}[b]{0.4\textwidth}
 	\centering
-%\includegraphics[width=\textwidth]{figures/babylon_nosym_ask.png}
-%\caption{Babylon non-symbiotic relation with ASK}
-%\label{fig:babylon_nosym_ask}
 \includegraphics[width=\textwidth]{figures/ask_sym_avira.png}
 \caption{ASK Toolbar symbiotic relation with Avira}
 \label{fig:ask_sym_avira}
@@ -884,17 +881,21 @@ The most interesting symbiotic relationships are those that cannot be validated 
 
 In \autoref{sec:symb_relations}, we investigated symbiotic relationships between addon species, i.e. when one species benefit from another. In this section, we look for the opposite type of relationship: the \emph{clash}, which occurs when one species causes harm to another species. The idea behind detecting clash relations is very similar to the idea behind detecting simbiotic relations (as described in \autoref{sec:symb_relations}): we again aggregate addon PageRank scores into expected scores --- both for non-personalized PagerRank and personalized PageRank with a query of all company's addons. In contrast to looking for companies whose expected scores increase (which we assume correspond to symbiotic relations), we now look for companies whose scores decrease substantially when another company is in the PPR query. 
 
+
 \begin{figure}[!htbp]
 \centering
-\begin{subfigure}[b]{0.49\textwidth}
+\begin{subfigure}[b]{0.4\textwidth}
 	\centering
-\includegraphics[scale=0.49]{figures/zone_clash_kaspersky.png}
-\caption{ZoneAlarm clash relationship with Kaspersky}
-\label{fig:zone_clash_kaspersky}
+\includegraphics[width=\textwidth]{figures/trend_clash_kaspersky1.png}
+\caption{TrendMicro clash relationship with Kaspersky}
+\label{fig:trend_clash_kaspersky}
 \end{subfigure}
-\begin{subfigure}[b]{0.49\textwidth}
+\begin{subfigure}[b]{0.4\textwidth}
 	\centering
-\includegraphics[scale=0.49]{figures/kaspersky_clash_norton.png}
+%\includegraphics[width=\textwidth]{figures/babylon_nosym_ask.png}
+%\caption{Babylon non-symbiotic relation with ASK}
+%\label{fig:babylon_nosym_ask}
+\includegraphics[width=\textwidth]{figures/kaspersky_clash_norton1.png}
 \caption{Kaspersky clash relationship with Norton}
 \label{fig:kaspersky_clash_norton}
 \end{subfigure}
@@ -910,17 +911,15 @@ In the toolbar domain, it is remarkable to see that Google Toolbar appears clash
 \centering
 \begin{subfigure}[b]{0.4\textwidth}
 	\centering
-\includegraphics[width=\textwidth]{figures/ask_clash_trend.png}
+\includegraphics[width=\textwidth]{figures/ask_clash_trend1.png}
 \caption{ASK Toolbar clash relation with TrendMicro}
 \label{fig:ask_clash_trend}
 \end{subfigure}
 \begin{subfigure}[b]{0.4\textwidth}
 	\centering
-%\includegraphics[width=\textwidth]{figures/ask_clash_imesh.png}
-%\caption{ASK Toolbar clash relation with iMesh}
-%\label{fig:ask_clash_imesh}
-\includegraphics[width=\textwidth]{figures/babylon_nosym_ask.png}
-\caption{Babylon clash with ASK}
+\includegraphics[width=\textwidth]{figures/babylon_nosym_ask1.png}
+\caption{Babylon clash relation with ASK Toolbar}
+%\caption{ASK Toolbar clash relation with TrendMicro}
 \label{fig:babylon_nosym_ask}
 \end{subfigure}
 \caption{ASK Toolbar clash relations.}
