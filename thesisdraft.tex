@@ -113,36 +113,34 @@
 
 \ABSTRACT{%
 
-The Web browser is the user’s window to the World Wide Web. All Web browsers extend their
+The question ``How do intelligent machines coexist with humans?'' has recently received a new wave of attention. In this paper, we deal with the question ``How do machines coexist with each other?''. While the human-machine interaction has been in the focus of the research community for decades, the machine-machine interaction has been largely overlooked in the literature. The general assumption has so far been that machines are supposed to cooperate for the human's good, but it is not always the case. We claim that machines and humans comprise a complex ecosystem and show that \emph{ecology} is a feasible framework for modeling  processes in the new world where machines are no longer under the full control of humans. We do so over a case study of Web browser's \emph{addons} --- a domain in which ``machines'' (i.e.~addons) have been coexisting for years. 
+
+The Web browser is the user's window to the World Wide Web. All Web browsers extend their
 offerings via browser addons. There is an enormous amount of various addons available on the Web.
-The decision whether to install a particular addon is usually in the user’s hands, so that the set of addons
-installed on the user’s machine is partially reflecting the user’s preferences, domains of interest, and behavioral characteristics. Therefore,
-we can learn the user’s ``personality'' profile and attempt to predict which addons might be added and
-which addons are likely to be removed soon.
+The decision whether to install a particular addon is usually in the user's hands, so that the set of addons
+installed on the user's machine partially reflects the user's preferences, interests, and behavioral characteristics. 
 
 Not all decisions about installing or removing addons are up to the user. Some addons ``sneak in''
-the user’s machine via third party installations, while some installed addons ``kick out'' their competitors
-without the user’s involvement. Most often, these processes follow business decisions of addon manufacturing
-companies that engage in partnerships with each other or compete over the user’s attention.
+the user's machine via third party installations, while some installed addons ``kick out'' their competitors
+without the user's involvement. Most often, these processes follow business decisions of addon manufacturing
+companies that engage in partnerships with each other or compete over the user's attention.
 Users with their personal preferences and addon companies with their business goals make the Web browser a
 complex ecosystem which we study in this paper.
 
 Our research goals are two fold. First, we investigate the Web browser ecosystem at the micro-level,
-i.e.~at the level of an individual user’s machine. We empirically show that the Web browser ecosystem
+i.e.~at the level of an individual user's machine. We empirically show that the Web browser ecosystem
 bears characteristics of a biological ecosystem. Provided with a unique dataset of addons installed on
-almost a million of real users’ machines, we construct a large-scale graph with nodes corresponding to
-users, addons, and words (terms) extracted from the addons’ attributes. We use the Personalized PageRank (PPR)
+almost a million of real users' machines, we construct a large-scale graph with nodes corresponding to
+users, addons, and words (terms) extracted from the addons' attributes. We use the Personalized PageRank (PPR)
 random walk to traverse the graph and confirm the \emph{ecological resilience} of the individual Web browser ecosystem. We
-show that our PPR-based model significantly outperforms non-personalized models.
+show that our PPR-based model significantly outperforms non-personalized models in detecting the resilience.
 
-Next, after demonstrating the success of our PPR-based model at the micro-level, we adapt it to
-analyzing the Web browser ecosystem at the macro-level, i.e. at the level of addon companies involved
-in business activities. We hypothesize that some addon companies live in symbiosis or clash with each
-other. We apply our adapted PPR-based model to a dataset of nineteen prominent addon manufacturers
-and their addons installed on users’ machines. We construct this dataset from our original dataset by
-mapping addons to their manufacturers. We identify symbiotic and clash relationships between some of
-the nineteen companies. We partly validate our results in the online media, while the rest of them shed
-light on well hidden relationships within the Web browser ecosystem.
+Next, we adapt our PPR-based model to
+analyzing the Web browser ecosystem at the macro-level, i.e. at the level of addon manufacturers involved
+in business activities. We hypothesize that some addon companies live in \emph{symbiosis} or \emph{clash} with each
+other. In our large-scale dataset of addons, we identify nineteen prominent addon manufacturers and use the adapted PPR-based model to detect symbiotic and clash relationships between some of
+the nineteen companies. We partly validate our results in online media, while the rest of them shed
+light on well hidden relationships within the Web browser ecosystem. By showing the direct connection between biological and digital ecosystems, our work invites ecologists to apply their methodologies to studying the new bio-digital ecology.
 }%
 
 % Sample 
@@ -172,6 +170,16 @@ light on well hidden relationships within the Web browser ecosystem.
 \newpage
 \section {Introduction}
 \pagenumbering{arabic}
+
+With the dramatic developments in AI technologies over the past 5 years, questions traditionally discussed in science fiction literature have recently been brought to the spotlight of public attention. In their seminal paper, \cite{russell2016research} posed some of those questions, mostly related to the legal, ethical, and structural regulation of decisions that can be made by intelligent systems. The paper led to formulating a widely recognized Open Letter on research priorities for robust and beneficial AI, signed so far by over 8000 scientists and technologists (including Stephen Hawking, Bill Gates, Elon Musk, and many other top influencers). The goal of the open letter is clear: ``our AI systems must do what we want them to do''. What is less clear, however, is how this goal can be achieved. \cite{amodei2016concrete} went much further into practical aspects of achieving this goal: they proposed concrete methods for minimizing damage that an intelligent system may cause to its environment. While Amodei et al.'s paper paves a way to building harmless AI, it makes it apparent that not all possible problems can be identified and immediately solved. The world in which both humans and machines are first-class citizens is much more complex than we could have imagined.
+
+A lot has been said about coexistence of humans and machines, however, coexistence of machines with other machines has not yet been discussed in depth. The field of Human-Computer Interaction \citep{dix2009human} has mostly been concerned with how one human communicates with one machine, or how humans communicate with each other with the help of a machine. The field does adjust itself to the changes in the complexity of the machines \citep{sellen2009reflecting}, but still does not focus on their plurality. The field of Multi-Agent Systems \citep{olfati2007consensus} deals with cooperation between machines, while overly ignoring the environments in which machines do not want to cooperate with each other, are not designed to cooperate with each other, or are simply unaware of each other. Nevertheless, those are the most common environments.
+
+We note that the coexistence of machines (and humans) is a complex problem even if the machines are not that intelligent---or not intelligent at all. Software tools installed on a user's laptop, or applications downloaded to a user's mobile device are most probably unaware of each other, however, they do compete with each other over the resources (battery, memory, disk space, computing power), as well as over the user's attention. In a general case, with no regards to how intelligent the machines are, they may be aware of each other and may be designed to compete with each other. A somewhat esoteric example would be a driverless Mercedes-Benz facing an unavoidable collision with one of two cars: a Mercedes and a Volvo. Which car will it decide to bump with? A much more down-to-earth example is an antivirus tool being installed on a laptop: what should it do about another antivirus tool preinstalled on that laptop? 
+
+We do not need to argue in terms of Ubiquitous Computing \citep{abowd2000charting} or even more futuristic Affective Computing \citep{picard1997affective} that machines and humans now coexist in one complex ecosystem which is infeasible to fully comprehend, characterize, or regulate. Such complex environments have been studied by the science of \emph{Ecology} over hundreds of years. While recent attempts to apply ecological theories to \emph{Digital Ecology} have been made \citep{kleineberg2015digital}, and the field of digital ecology has been expanded into \emph{Cyber-Physical-Socio Ecology} \citep{shi2011cyber}, to the best of our knowledge, no empirical study has so far aimed at establishing the direct connection between the traditional ecology as a biological discipline and the new bio-digital environment. Traditional ecologists have been reluctant to put their efforts in investigating the new environment as it might not bear ecological characteristics. 
+
+This paper is an early attempt to show that the digital environment does obey the rules of traditional ecology. Being computer scientists, we employ the computer science toolkit to draw the connection between the traditional and digital ecology, however, the main purpose of this study is to invite ecologists to apply their methods to the new domain. Our specific usecase is the ecology of the \emph{Web browser}.
 
 Web browsers --- software systems that retrieve and locally present resources of the World Wide Web --- have become a major component of the routine human-computer interaction. As of today, some operating systems are based entirely on browsers, e.g., ChromeOS by Google\footnote{\url{http://www.chromium.org/chromium-os}}. Browser {\it extensions}, also known as {\it addons}, are computer programs that (as the name suggests) extend, improve, and personalize browser capabilities. Extensions serve a wide variety of purposes.
 There exists an extension, for example, that allows visually impaired users to access the content of bar charts on the Web \citep{elzer2007browser}. As another example, an addon addresses users' security concerns, seamlessly producing a unique password for each website the user accesses, and by that defending the user against password phishing and other attacks \citep{ross2005stronger}. {\it Toolbars} are a particular kind of browser extensions --- these are GUI widgets, which typically reside in the upper part of the browser's window, extending the browser's functionality. 
